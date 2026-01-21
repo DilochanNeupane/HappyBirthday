@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        /* --- Color Palette & Reset --- */
+        :root {
+            --primary-pink: #ff85a2;
+            --dark-pink: #ff4d6d;
+            --soft-purple: #f3e5f5;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+            color: #4a4a4a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Falling Sparkles (Mobile Optimized) --- */
+        .sparkle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-pink);
+            top: -10px;
+            border-radius: 50%;
+            z-index: 0;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+
+        /* --- Hero Section --- */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 8vw, 3rem); /* Fluid typography for mobile */
+            color: var(--dark-pink);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+            margin: 0;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- Main Card --- */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 133, 162, 0.15);
+            text-align: center;
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            font-size: 50px;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.2); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* --- Interaction Buttons --- */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            background: var(--primary-pink);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            width: 100%;
+            max-width: 250px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 133, 162, 0.3);
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        /* --- The Hidden Surprise Area --- */
+        #surprise {
+            display: none;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        #surprise:target { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Polaroid Gallery (Mobile Responsive) --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 30px 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(calc(var(--r, 0deg)));
+        }
+
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            display: block;
+        }
+
+        .polaroid span {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.1rem;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* --- Music Toggle Fixed to Bottom --- */
+        .music-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .music-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--dark-pink);
+            color: white;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sparkle" style="left:10%; animation-duration: 5s;"></div>
+    <div class="sparkle" style="left:30%; animation-duration: 7s; background: #ce93d8;"></div>
+    <div class="sparkle" style="left:50%; animation-duration: 4s; background: #fff9db;"></div>
+    <div class="sparkle" style="left:70%; animation-duration: 8s; background: #fce4ec;"></div>
+    <div class="sparkle" style="left:90%; animation-duration: 6s; background: #ff4d6d;"></div>
+
+    <header>
+        <h1>Happy Birthday, Samikshya! 🎈</h1>
+    </header>
+
+    <main class="card">
+        <div class="heart">💖</div>
+        <p class="message">
+            "We are no longer together in the journey of love but i still have a right to wish you on your birthday.Happy birthday bander.😛 
+          Wishing you a year filled with new adventures, happiness, and everything your heart desires. Take care and stay amazing!❤️"
+        </p>
+        
+        <div class="btn-group">
+            <a href="#surprise" class="btn">Click for a Surprise!</a>
+        </div>
+    </main>
+
+    <section id="surprise">
+        <h2 style="color: var(--dark-pink);">Memories</h2>
+        <div class="gallery">
+            <div class="polaroid" style="--r: -3deg">
+                <img src="sami1.jpg" alt="Love">
+                <span>Miss beauty😍</span>
+            </div>
+            <div class="polaroid" style="--r: 2deg">
+                <img src="sami2.jpg" alt="Laughter">
+                <span>cuti girl😉</span>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 20px; background: #fff9db;">
+            <p><strong>I love you more than words can say!</strong></p>
+        </div>
+    </section>
+
+    <div class="music-bar">
+        <audio id="bdaySong" loop>
+            <source src="hbd.mp3" type="audio/mpeg">
+        </audio>
+        <button class="music-btn" onclick="toggleMusic()">🎵</button>
+    </div>
+
+    <script>
+        function toggleMusic() {
+            var song = document.getElementById("bdaySong");
+            return song.paused ? song.play() : song.pause();
+        }
+    </script>
+
+</body>
+</html>
